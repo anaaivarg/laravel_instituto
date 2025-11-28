@@ -11,10 +11,11 @@
     Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-header:#B7BCBF;
-    --color-nav:#D7D0C2;
-    --color-main:#FBF2ED;
-    --color-footer:#00004F;
+    --color-header:#2c6e49;
+    --color-nav:#ffc9b9;
+    --color-main:#fefee3;
+    --color-footer:#d68c45;
+    --color-secundario:#4c956c;
 
     --height-header:15vh;
     --height-nav:10vh;

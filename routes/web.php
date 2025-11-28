@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::view('/', 'main');
-Route::view('/about', 'about');
+Route::view('/', 'main')->name("main");
+Route::view('/about', 'about')->name("about");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

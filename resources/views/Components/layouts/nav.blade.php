@@ -1,6 +1,6 @@
 <nav class="bg-nav h-nav flex flex-row justify-center items-center space-x-2">
     <button class="btn btn-active btn-info">
-        <a href="about">About</a>
+        <a href="{{route("about")}}">About</a>
 
     </button>
     <button class="btn btn-active btn-primary">

@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
 
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 Route::view('/', 'main')->name("main");
 Route::view('/about', 'about')->name("about");
+Route::resource('alumnos', AlumnoController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

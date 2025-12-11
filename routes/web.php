@@ -11,6 +11,8 @@ use App\Http\Controllers\AlumnoController;
 Route::view('/', 'main')->name("main");
 Route::view('/about', 'about')->name("about");
 Route::resource('alumnos', AlumnoController::class);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

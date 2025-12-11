@@ -17,13 +17,14 @@
     @auth
 
         <span>{{auth()->user()->name}}</span>
-        <form action="logout" method="POST">
-            @csrf
-            <input class="btn btn-soft btn-warning" type="submit" value="Salir">
-        </form>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <input class="btn btn-soft btn-warning" type="submit" value="Salir">
+            </form>
 
 
-    @endauth
+
+        @endauth
     <button class="btn btn-soft btn-info">
         Idioma
     </button>

@@ -3,12 +3,12 @@
         <a href="{{ route('alumnos.create') }}">
             <button class="bg-green-600 cursor-pointer hover:bg-green-400 py-3 px-4 m-3 text-white font-bold rounded-lg">Añadir alumno</button>
         </a>
-        <table class="table table-xs table-pin-rows table-pin-cols">
+        <table class="table table-xs table-pin-rows table-pin-cols text-center">
             <tr>
                 @foreach($campos as $campo)
                     <th class="p-3 text-white">{{$campo}}</th>
                 @endforeach
-                <th class="p-3 text-white">Editar</th>
+                <th  class="p-3 text-white">Editar</th>
                 <th class="p-3 text-white">Eliminar</th>
             </tr>
             @foreach($alumnos as $alumno)
@@ -20,18 +20,21 @@
                     <td>{{$alumno->fecha_nacimiento}}</td>
                     <td>{{$alumno->created_at}}</td>
                     <td>{{$alumno->updated_at}}</td>
-                    <td>
-                        <a href="{{route("alumnos.edit",$alumno->id)}}">
-                            <button class="bg-blue-600 cursor-pointer hover:bg-blue-400 py-3 px-4 text-white font-bold rounded-lg">Editar</button></a>
+                    <td class="text-center">
+                        <a href="{{ route('alumnos.edit', $alumno->id) }}">
+                            <i class="fa-solid fa-pen-to-square  text-xl cursor-pointer hover:text-blue-400"></i>
+                        </a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <form action="/alumnos/{{$alumno->id}}" method="POST" class="formEliminar">
                             @method("DELETE")
                             @csrf
-                            <button type="submit" class="bg-red-600 cursor-pointer hover:bg-red-400 py-3 px-4 text-white font-bold rounded-lg">Eliminar</button>
+                            <button type="submit" class="bg-red-600 p-2 rounded-lg hover:bg-red-400">
+                                <i class="fa-solid fa-trash text-white"></i>
+                            </button>
                         </form>
-
                     </td>
+
                 </tr>
             @endforeach
         </table>

@@ -21,14 +21,16 @@
                     <td>{{$alumno->created_at}}</td>
                     <td>{{$alumno->updated_at}}</td>
                     <td>
-                        <button class="bg-blue-600 cursor-pointer hover:bg-blue-400 py-3 px-4 text-white font-bold rounded-lg">Editar</button>
+                        <a href="{{route("alumnos.edit",$alumno->id)}}">
+                            <button class="bg-blue-600 cursor-pointer hover:bg-blue-400 py-3 px-4 text-white font-bold rounded-lg">Editar</button></a>
                     </td>
                     <td>
-                        <form action="/alumnos/{{$alumno->id}}" method="POST">
+                        <form action="/alumnos/{{$alumno->id}}" method="POST" class="formEliminar">
                             @method("DELETE")
                             @csrf
-                            <button type="submit" onclick="confirmarDelete(event)" class="bg-red-600 cursor-pointer hover:bg-red-400 py-3 px-4 text-white font-bold rounded-lg">Eliminar</button>
+                            <button type="submit" class="bg-red-600 cursor-pointer hover:bg-red-400 py-3 px-4 text-white font-bold rounded-lg">Eliminar</button>
                         </form>
+
                     </td>
                 </tr>
             @endforeach
@@ -36,12 +38,32 @@
     </div>
 </x-layouts.layout>
 
-<script>
-    function confirmarDelete(event) {
-        event.preventDefault();
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        if (confirm("Seguro que quieres eliminar el registro")) {
-            event.target.closest("form").submit();
-        }
-    }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const forms = document.querySelectorAll('.formEliminar');
+
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción eliminará el alumno.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    });
 </script>
+

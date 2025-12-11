@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProyectoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
 
@@ -22,3 +23,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::resource("proyectos", ProyectoController::class);

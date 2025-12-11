@@ -24,7 +24,9 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.create');
+
+
     }
 
     /**
@@ -32,7 +34,15 @@ class AlumnoController extends Controller
      */
     public function store(StoreAlumnoRequest $request)
     {
-        //
+        $datos_alumnos = $request->input();
+        Alumno::create($datos_alumnos);
+        return redirect()->route('alumnos.index');
+
+
+
+
+
+
     }
 
     /**
@@ -40,7 +50,7 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
-        //
+        return view('alumnos.edit', compact('alumno'));
     }
 
     /**
@@ -48,7 +58,7 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        return view('alumnos.edit', compact('alumno'));
     }
 
     /**
@@ -56,7 +66,9 @@ class AlumnoController extends Controller
      */
     public function update(UpdateAlumnoRequest $request, Alumno $alumno)
     {
-        //
+        $datos_alumnos = $request->input();
+        $alumno->update($datos_alumnos);
+        return redirect()->route('alumnos.index');
     }
 
     /**

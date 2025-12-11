@@ -8,9 +8,9 @@
             </figure>
             <div class="card-body">
                 <h2 class="card-title">Gestion alumnos</h2>
-                <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                <p>Gestiona tus alumnos</p>
                 <div class="card-actions justify-end">
-                    <a href="alumnos"><button class="btn btn-primary">Gestionar Alumnos</button></a>
+                    <a href="{{route("alumnos.index")}}"><button class="btn btn-primary">Gestionar Alumnos</button></a>
                 </div>
             </div>
         </div>

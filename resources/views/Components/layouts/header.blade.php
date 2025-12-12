@@ -21,6 +21,12 @@
                 @csrf
                 <input class="btn btn-soft btn-warning" type="submit" value="Salir">
             </form>
+        @role("admin")
+            <a href="register"><button class="btn btn-soft btn-warning">
+                    Administrar
+                </button>
+            </a>
+        @endrole
 
 
 

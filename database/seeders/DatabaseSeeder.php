@@ -17,8 +17,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+
+
        $this::callWith([
            AlumnoSeeder::class,
+           RolesSeeder::class,
        ]);
+
+        $user = User::create([
+            "name"=>"admin",
+            "email"=>"e@e",
+            "password"=>bcrypt("admin")
+        ]);
+        $user->assignRole("admin");
     }
 }

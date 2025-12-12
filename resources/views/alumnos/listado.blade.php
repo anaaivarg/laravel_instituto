@@ -38,7 +38,11 @@
                 </tr>
             @endforeach
         </table>
+        <div class="flex justify-center mt-4 mb-4">
+            {{ $alumnos->links() }}
+        </div>
     </div>
+
 </x-layouts.layout>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

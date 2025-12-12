@@ -14,7 +14,7 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::all();
+        $alumnos = Alumno::paginate(10);
         $campos = Schema::getColumnListing('alumnos');
         return view("alumnos.listado", compact('alumnos','campos'));
     }
@@ -79,6 +79,6 @@ class AlumnoController extends Controller
         $alumno->delete();
         $alumnos = Alumno::all();
         $campos = Schema::getColumnListing('alumnos');
-        return view("alumnos.listado", compact('alumnos','campos'));
+        return redirect()->route('alumnos.index');
     }
 }

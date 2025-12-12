@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Alumno;
 
+
 class AlumnoSeeder extends Seeder
 {
     /**
@@ -16,5 +17,6 @@ class AlumnoSeeder extends Seeder
         Alumno::factory()
             ->count(50)
             ->create();
+
     }
 }

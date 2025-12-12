@@ -20,15 +20,11 @@ class DatabaseSeeder extends Seeder
 
 
        $this::callWith([
-           AlumnoSeeder::class,
            RolesSeeder::class,
+           UserSeeder::class,
+
        ]);
 
-        $user = User::create([
-            "name"=>"admin",
-            "email"=>"e@e",
-            "password"=>bcrypt("admin")
-        ]);
-        $user->assignRole("admin");
+
     }
 }

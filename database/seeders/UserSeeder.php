@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->count(5)->create()->each(function ($user) {
-            $user->assignRole(config('profesor'));
+            $user->assignRole(config('alumno'));
         });
         User::factory()->count(5)->create()->each(function ($user) {
-            $user->assignRole(config('alumno'));
+            $user->assignRole(config('profesor'));
         });
         $user=User::create([
             'name'=>'admin',

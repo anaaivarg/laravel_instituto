@@ -45,4 +45,9 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    #[Scope]
+    protected function profesores(Builder $query){
+        return User::profesores;
+    }
 }

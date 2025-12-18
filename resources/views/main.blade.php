@@ -1,5 +1,7 @@
 <x-layouts.layout>
     @auth
+       <div class="flex flex-rown justify-center p-5 gap-5">
+
         <div class="card relative top-5 left-5 bg-white image-full w-96 shadow-sm ">
             <figure>
                 <img
@@ -10,10 +12,24 @@
                 <h2 class="card-title">Gestion alumnos</h2>
                 <p>Gestiona tus alumnos</p>
                 <div class="card-actions justify-end">
-                    <a href="{{route("alumnos.index")}}"><button class="btn btn-primary">Gestionar Alumnos</button></a>
+                    <a href="{{route("alumnos_listado")}}"><button class="btn btn-primary">Gestionar Alumnos</button></a>
+                </div>
+            </div>
+        </div>  <div class="card relative top-5 left-5 bg-white image-full w-96 shadow-sm ">
+            <figure>
+                <img
+                    src="{{asset("images/studens.jpg")}}"
+                    alt="Shoes" class="w-full " />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">Gestion usuarios</h2>
+                <p>Gestiona tus usuarios</p>
+                <div class="card-actions justify-end">
+                    <a href="{{route("usuarios.index")}}"><button class="btn btn-primary">Gestionar Usuarios</button></a>
                 </div>
             </div>
         </div>
+       </div>
     @endauth
     @guest
     <div

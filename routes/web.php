@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\UserController;
+
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -25,5 +27,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-Route::resource("proyectos", ProyectoController::class);
+
 Route::resource('alumnos', AlumnoController::class)->middleware('auth');
+Route::resource('usuarios', UserController::class)->middleware('auth');
+Route::get("role_profesores", [UserController::class, 'getProfesores'])->middleware('auth')->name("profesor_listado");
+Route::get("role_alumnos", [UserController::class, 'getAlumnos'])->middleware('auth')->name("alumnos_listado");;

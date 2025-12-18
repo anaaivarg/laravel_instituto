@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 class UserController extends Controller
 {
     /**
@@ -11,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+
+        $campos= Schema::getColumnListing('usuarios');
+        return view("instituto.usuarios.listado",compact("usuarios","campos"));
     }
 
     /**
@@ -19,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**
@@ -60,5 +65,24 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getProfesores(Request $request){
+        $usuarios= User::profesores()->get();
+        $campos=$usuarios->first()->getFillable();
+        return view("instituto.usuarios.listado",compact("usuarios","campos"));
+
+
+
+
+    }
+    public function getAlumnos(Request $request){
+        $usuarios= User::alumnos()->get();
+        $campos=$usuarios->first()->getFillable();
+        return view("instituto.usuarios.listado",compact("usuarios","campos"));
+
+
+
+
     }
 }

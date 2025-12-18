@@ -12,6 +12,20 @@
     <button class="btn btn-active btn-accent">
         Referencias
     </button>
+    @role("admin")
+    <a href="{{ route('profesor_listado') }}">
+        <button class="btn btn-active btn-accent">
+            Profesores
+        </button>
+    </a>
+
+    <a href="{{ route('alumnos_listado') }}">
+        <button class="btn btn-active btn-accent">
+            Alumnos
+        </button>
+    </a>
+    @endrole
+
 
 
 </nav>

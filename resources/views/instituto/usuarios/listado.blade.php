@@ -32,7 +32,7 @@
 
                     <!-- Editar -->
                     <td class="text-center">
-                        <a href="{{ route('usuarios.edit', ['usuario' => $usuario->id, 'rol' => $rol]) }}">
+                        <a href="{{ route('usuarios.edit', ['usuario' => $usuario->id]) }}">
                             <button class="btn btn-warning">
                                 <i class="fa-solid fa-edit text-white"></i>
                             </button>
@@ -44,7 +44,6 @@
                         <form action="{{ route('usuarios.destroy', ['usuario' => $usuario->id]) }}" method="POST" class="formEliminar">
                             @method("DELETE")
                             @csrf
-                            <input type="hidden" name="rol" value="{{ $rol }}">
                             <button type="submit" class="bg-red-600 p-2 rounded-lg hover:bg-red-400">
                                 <i class="fa-solid fa-trash text-white"></i>
                             </button>

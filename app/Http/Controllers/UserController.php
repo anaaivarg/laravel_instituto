@@ -12,6 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
+
+        info ("valor de sesion rol -".session()->get("rol")."-");
         $usuarios = User::with('roles')->paginate(10);
 
         $campos= Schema::getColumnListing('users');
@@ -36,10 +38,17 @@ class UserController extends Controller
         $user = User::create($request->all());
 
         // asignar rol alumno
-        $user->assignRole('alumno');
+        $rol = session('rol')??"";
+        if ($rol=="alumno") {
+            $user->assignRole('alumno');
+
+            return redirect()->route('alumnos.listado');
+        }
+        else
+            return redirect()->route('usuarios.index');
+
 
         // ir al listado filtrado de alumnos
-        return redirect()->route('alumnos.listado');
     }
 
 
@@ -58,13 +67,11 @@ class UserController extends Controller
     public function edit(int $id, Request $request)
     {
 
-        $rol = $request->query('rol', 'alumno'); // por defecto 'alumno'
-
-        $user = User::role($rol)->find($id);
+       $user = User::find($id)->first();
 
 
 
-        return view('instituto.usuarios.edit', compact('user', 'rol'));
+        return view('instituto.usuarios.edit', compact('user' ));
     }
 
     /**
@@ -72,8 +79,8 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $rol = $request->query('rol', 'alumno');
-        $user = User::role($rol)->find($id);
+
+        $user = User::find($id)->first();
 
 
 
@@ -85,9 +92,16 @@ class UserController extends Controller
         ]);
 
         $user->update($datos);
+        $rol = session('rol')??"";
+        if ($rol=="alumno")
+            return redirect()->route('alumnos.listado');
+        else if($rol=="profesor"){
+            return redirect()->route('profesores_listado');
+        }
+        else
+            return redirect()->route('usuarios.index');
 
-        return redirect()->route($rol === 'alumno' ? 'alumnos.listado' : 'profesores_listado')
-            ->with('success', 'Usuario actualizado correctamente.');
+
     }
 
     /**
@@ -95,15 +109,22 @@ class UserController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        $rol = $request->input('rol', 'alumno');
-        $user = User::role($rol)->find($id);
+        $user = User::find($id)->first();
 
 
 
         $user->delete();
 
-        return redirect()->route($rol === 'alumno' ? 'alumnos.listado' : 'profesores_listado')
-            ->with('success','Usuario eliminado correctamente');
+        $rol = session('rol')??"";
+        if ($rol=="alumno")
+            return redirect()->route('alumnos.listado');
+        else if($rol=="profesor"){
+            return redirect()->route('profesores_listado');
+        }
+        else
+            return redirect()->route('usuarios.index');
+
+
     }
 
     public function getProfesores(Request $request){
@@ -117,8 +138,9 @@ class UserController extends Controller
     }
     public function getAlumnos(Request $request){
         $usuarios = User::alumnos()->get();
-        $rol = 'alumno';
-        return view('instituto.usuarios.listado', compact('usuarios','rol'));
+        info("Estoy asignando varialbe de sesion");
+        session()->put("rol","alumno");
+        return view('instituto.usuarios.listado', compact('usuarios'));
 
 
 

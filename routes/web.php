@@ -12,7 +12,8 @@ use App\Http\Controllers\LanguageController;
 //    return view('welcome');
 //});
 Route::get('/', function(){
-    //session()->flush();
+    session()->put("role","");;
+    info("Valor del la variable de sesion -". session()->get("role")."-");
     return view('main');
 })->name("main");
 

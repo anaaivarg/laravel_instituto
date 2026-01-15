@@ -3,14 +3,14 @@
     <img src="{{ asset('./images/monitor.svg') }}" alt="Logo" class="h-30 w-30 max-h-full">
 
 
-    <h1 class="flex-1 text-center text-amber-50 text-6xl">Sistema de gestión escolar</h1>
+    <h1 class="flex-1 text-center text-amber-50 text-6xl">{{__("Sistema de gestión escolar")}}</h1>
     <div class="flex flex-row items-center space-x-2">
     @guest
             <a href="login"><button class="btn btn-soft btn-warning">
-        Entrar
+        {{__("Entrar")}}
     </button></a>
             <a href="register"><button class="btn btn-soft btn-warning">
-        Registrar
+        {{__("Registrar")}}
     </button>
             </a>
     @endguest
@@ -23,7 +23,7 @@
             </form>
         @role("admin")
             <a href="register"><button class="btn btn-soft btn-warning">
-                    Administrar
+                    {{__("Administrar")}}
                 </button>
             </a>
         @endrole
@@ -31,8 +31,10 @@
 
 
         @endauth
-    <button class="btn btn-soft btn-info">
-        Idioma
-    </button>
+
+        <x-layouts.setLang />
+
+
+
     </div>
 </header>

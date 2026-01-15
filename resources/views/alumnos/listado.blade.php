@@ -1,43 +1,55 @@
 <x-layouts.layout>
     <div class="overflow-x-auto h-full w-full">
+
         <a href="{{ route('alumnos.create') }}">
-            <button class="bg-green-600 cursor-pointer hover:bg-green-400 py-3 px-4 m-3 text-white font-bold rounded-lg">Añadir alumno</button>
+            <button class="bg-green-600 hover:bg-green-400 py-3 px-4 m-3 text-white font-bold rounded-lg">
+                Añadir alumnooooo
+            </button>
         </a>
+
         <table class="table table-xs table-pin-rows table-pin-cols text-center">
+            <thead>
             <tr>
                 @foreach($campos as $campo)
-                    <th class="p-3 text-white">{{$campo}}</th>
+                    <th class="p-3 text-white">
+                        {{ ucfirst(str_replace('_', ' ', $campo)) }}
+                    </th>
                 @endforeach
-                <th  class="p-3 text-white">Editar</th>
+                <th class="p-3 text-white">Editar</th>
                 <th class="p-3 text-white">Eliminar</th>
             </tr>
+            </thead>
+
+            <tbody>
             @foreach($alumnos as $alumno)
                 <tr class="text-black">
-                    <td>{{$alumno->id}}</td>
-                    <td>{{$alumno->nombre}}</td>
-                    <td>{{$alumno->apellido}}</td>
-                    <td>{{$alumno->email}}</td>
-                    <td>{{$alumno->fecha_nacimiento}}</td>
-                    <td>{{$alumno->created_at}}</td>
-                    <td>{{$alumno->updated_at}}</td>
-                    <td class="text-center">
+                    @foreach($campos as $campo)
+                        @dd($campos)
+                        <td>
+                            {{ $alumno->$campo }}
+                        </td>
+                    @endforeach
+
+                    <td>
                         <a href="{{ route('alumnos.edit', $alumno->id) }}">
-                            <i class="fa-solid fa-pen-to-square  text-xl cursor-pointer hover:text-blue-400"></i>
+                            <i class="fa-solid fa-pen-to-square text-xl hover:text-blue-400"></i>
                         </a>
                     </td>
-                    <td class="text-center">
-                        <form action="/alumnos/{{$alumno->id}}" method="POST" class="formEliminar">
-                            @method("DELETE")
+
+                    <td>
+                        <form action="{{ route('alumnos.destroy', $alumno->id) }}" method="POST" class="formEliminar">
                             @csrf
+                            @method('DELETE')
                             <button type="submit" class="bg-red-600 p-2 rounded-lg hover:bg-red-400">
                                 <i class="fa-solid fa-trash text-white"></i>
                             </button>
                         </form>
                     </td>
-
                 </tr>
             @endforeach
+            </tbody>
         </table>
+
         <div class="flex justify-center mt-4 mb-4">
             {{ $alumnos->links() }}
         </div>

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,10 +25,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nombre' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => bcrypt("123456789"),
+            'password' => bcrypt("12345678"),
             'remember_token' => Str::random(10),
             'apellido' => fake()->lastName(),
             'fecha_nacimiento' => $this->faker->date(),

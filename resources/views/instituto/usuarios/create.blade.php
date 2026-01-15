@@ -1,6 +1,6 @@
 <x-layouts.layout>
     <div class="flex flex-col justify-center items-center h-full bg-gray-400 text-black">
-        <form id="crearAlumno" action="{{ route('alumnos.store') }}" method="POST" class="bg-white p-3 rounded-xl m-3 flex flex-col gap-2">
+        <form id="crearAlumno" action="{{ route('usuarios.store') }}" method="POST" class="bg-white p-3 rounded-xl m-3 flex flex-col gap-2">
             @csrf
 
             <label for="nombre">Nombre</label>

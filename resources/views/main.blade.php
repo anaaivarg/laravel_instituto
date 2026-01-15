@@ -12,7 +12,7 @@
                 <h2 class="card-title">Gestion alumnos</h2>
                 <p>Gestiona tus alumnos</p>
                 <div class="card-actions justify-end">
-                    <a href="{{route("alumnos_listado")}}"><button class="btn btn-primary">Gestionar Alumnos</button></a>
+                    <a href="{{route("alumnos.listado")}}"><button class="btn btn-primary">Gestionar Alumnos</button></a>
                 </div>
             </div>
         </div>  <div class="card relative top-5 left-5 bg-white image-full w-96 shadow-sm ">

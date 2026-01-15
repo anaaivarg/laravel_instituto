@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
             $user->assignRole('profesor');
         });
         $user=User::create([
-            'name'=>'admin',
+            'nombre'=>'admin',
             'fecha_nacimiento'=>now(),
             'apellido' => 'admin',
-            'email'=>'a@a',
+            'email'=>'a@a.com',
             'password'=>bcrypt('admin'),
 
         ]);

@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class AlumnoController extends Controller
 {
@@ -14,8 +15,9 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        $alumnos = Alumno::paginate(10);
+        $alumnos = User::role('alumno')->paginate(10);
         $campos = Schema::getColumnListing('alumnos');
+
         return view("alumnos.listado", compact('alumnos','campos'));
     }
 
@@ -35,7 +37,14 @@ class AlumnoController extends Controller
     public function store(StoreAlumnoRequest $request)
     {
         $datos_alumnos = $request->input();
-        Alumno::create($datos_alumnos);
+        $user = User::create([
+            'name' => $datos_alumnos['nombre'],
+            'apellido' => $datos_alumnos['apellido'],
+            'email' => $datos_alumnos['email'],
+            'fecha_nacimiento' => $datos_alumnos['fecha_nacimiento'],
+        ]);
+        $user->assignRole('alumno');
+
         return redirect()->route('alumnos.index');
 
 
@@ -77,8 +86,7 @@ class AlumnoController extends Controller
     public function destroy(Alumno $alumno)
     {
         $alumno->delete();
-        $alumnos = Alumno::all();
-        $campos = Schema::getColumnListing('alumnos');
-        return redirect()->route('alumnos.index');
+        // Redirige a la ruta "alumnos_listado"
+        return redirect()->route('alumnos_listado');
     }
 }

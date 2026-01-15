@@ -19,7 +19,7 @@
         </button>
     </a>
 
-    <a href="{{ route('alumnos_listado') }}">
+    <a href="{{ route('alumnos.listado') }}">
         <button class="btn btn-active btn-accent">
             Alumnos
         </button>
